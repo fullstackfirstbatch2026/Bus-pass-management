@@ -1,0 +1,19 @@
+<div class="app-shell">
+  <aside class="sidebar" [class.open]="mobileOpen">
+    <div class="brand"><div class="brand-mark"><span></span><span></span><span></span></div><div><strong>TransitFlow</strong><small>Pass operations</small></div></div>
+    <div class="workspace"><span class="pulse"></span><div><b>Operations</b><small>Chennai network</small></div><span class="chevron">⌄</span></div>
+    <nav>
+      <div class="nav-label">WORKSPACE</div>
+      @for(item of nav; track item.path){<a [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact:item.path==='/' }" (click)="close()"><span class="nav-icon" [class]="item.icon"></span>{{item.label}}</a>}
+      <div class="nav-label insights">ANALYTICS</div>
+      <a routerLink="/routes" fragment="above-average" (click)="close()"><span class="nav-icon trend"></span>Above-average routes</a>
+      <a routerLink="/passes" fragment="status" (click)="close()"><span class="nav-icon activity"></span>Pass activity</a>
+    </nav>
+    <div class="sidebar-bottom"><div class="help-card"><div class="help-icon">?</div><div><b>Need a hand?</b><small>Connect your REST API</small></div></div><div class="profile"><div class="avatar">AD</div><div><b>Admin desk</b><small>System administrator</small></div><span>•••</span></div></div>
+  </aside>
+  @if(mobileOpen){<div class="backdrop" (click)="close()"></div>}
+  <main class="main">
+    <header class="topbar"><button class="menu" (click)="toggle()">☰</button><div class="crumb"><span>TransitFlow</span><b>/</b><strong>{{title}}</strong></div><div class="top-actions"><div class="api-status"><span></span>{{demo?'Demo data':'Live API'}}</div><button class="icon-btn">⌕</button><button class="icon-btn">◔</button><div class="mini-avatar">AD</div></div></header>
+    <div class="content"><ng-content></ng-content></div>
+  </main>
+</div>
